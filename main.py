@@ -6,7 +6,8 @@ def main():
         filtered_letters = filter_letters(counted_symbols)
         converted_dicts = convert_dict_to_list(filtered_letters)
         sorted_list_dicts = sort_counted_symbols(converted_dicts)
-        print(sorted_list_dicts)
+        counted_words = count_words(file_contents)
+        print_report(counted_words, sorted_list_dicts)
 
 
 def count_words(text):
@@ -50,6 +51,14 @@ def sort_on(dict):
 def sort_counted_symbols(symbols_list):
     symbols_list.sort(reverse=True, key=sort_on)
     return symbols_list
+
+
+def print_report(counted_words, sorted_symbols):
+    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"{counted_words} words found in the document\n")
+    for letter in sorted_symbols:
+        print(f"The '{letter['letter']}' was found {letter['count']} times")
+    print("--- End report ---")
 
 
 main()
